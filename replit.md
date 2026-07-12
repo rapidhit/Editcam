@@ -34,7 +34,7 @@ _Describe the high-level user-facing capabilities of this app once they exist._
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+- After every requested code change, push the update to the GitHub repo `rapidhit/Editcam` (origin remote) once the change is verified working.
 
 ## Gotchas
 
