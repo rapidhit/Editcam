@@ -97,6 +97,12 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     padding: 16,
     marginBottom: 12,
+    shadowColor: '#1A1533',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 8,
+    boxShadow: '0px 2px 8px rgba(26, 21, 51, 0.05)',
+    elevation: 1,
   },
   header: {
     flexDirection: 'row',
