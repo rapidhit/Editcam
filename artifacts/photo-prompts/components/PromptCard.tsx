@@ -15,7 +15,7 @@ interface PromptCardProps {
   onToggleFavorite: () => void;
 }
 
-export function PromptCard({
+function PromptCardInner({
   prompt,
   categoryLabel,
   categoryColor,
@@ -90,6 +90,8 @@ export function PromptCard({
     </Pressable>
   );
 }
+
+export const PromptCard = React.memo(PromptCardInner);
 
 const styles = StyleSheet.create({
   card: {
