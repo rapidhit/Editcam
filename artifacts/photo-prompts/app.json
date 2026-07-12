@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "AI Photo Prompts",
-    "slug": "photo-prompts",
+    "name": "Editcam",
+    "slug": "editcam",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "photo-prompts",
+    "scheme": "editcam",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
@@ -14,21 +14,22 @@
       "backgroundColor": "#FBFAFE"
     },
     "ios": {
-      "supportsTablet": false
+      "supportsTablet": false,
+      "bundleIdentifier": "com.rapidhit.editcam"
     },
-    "android": {},
+    "android": {
+      "package": "com.rapidhit.editcam",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/icon.png",
+        "backgroundColor": "#FBFAFE"
+      }
+    },
     "web": {
       "favicon": "./assets/images/icon.png"
     },
     "plugins": [
-      [
-        "expo-router",
-        {
-          "origin": "https://replit.com/"
-        }
-      ],
-      "expo-font",
-      "expo-web-browser"
+      "expo-router",
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true,

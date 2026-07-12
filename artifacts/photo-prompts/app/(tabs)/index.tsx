@@ -57,7 +57,7 @@ export default function BrowseScreen() {
         ]}
       >
         <Text style={[styles.title, { color: colors.foreground }]}>
-          AI Photo Prompts
+          Editcam
         </Text>
         <Text style={[styles.subtitle, { color: colors.mutedForeground }]}>
           Copy a prompt, paste it into any AI photo editor.
