@@ -8,6 +8,8 @@ interface CategoryChipProps {
   icon: React.ComponentProps<typeof Feather>['name'];
   selected: boolean;
   onPress: () => void;
+  color?: string;
+  colorForeground?: string;
 }
 
 export function CategoryChip({
@@ -15,8 +17,13 @@ export function CategoryChip({
   icon,
   selected,
   onPress,
+  color,
+  colorForeground,
 }: CategoryChipProps) {
   const colors = useColors();
+
+  const selectedBg = color ?? colors.primary;
+  const selectedFg = colorForeground ?? colors.primaryForeground;
 
   return (
     <Pressable
@@ -25,7 +32,7 @@ export function CategoryChip({
       style={({ pressed }) => [
         styles.chip,
         {
-          backgroundColor: selected ? colors.primary : colors.secondary,
+          backgroundColor: selected ? selectedBg : colors.secondary,
           opacity: pressed ? 0.8 : 1,
         },
       ]}
@@ -33,13 +40,13 @@ export function CategoryChip({
       <Feather
         name={icon}
         size={14}
-        color={selected ? colors.primaryForeground : colors.mutedForeground}
+        color={selected ? selectedFg : colors.mutedForeground}
         style={styles.icon}
       />
       <Text
         style={[
           styles.label,
-          { color: selected ? colors.primaryForeground : colors.foreground },
+          { color: selected ? selectedFg : colors.foreground },
         ]}
         numberOfLines={1}
       >

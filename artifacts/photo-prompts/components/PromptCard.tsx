@@ -7,6 +7,8 @@ import type { Prompt } from '@/data/prompts';
 interface PromptCardProps {
   prompt: Prompt;
   categoryLabel: string;
+  categoryColor: string;
+  categoryColorForeground: string;
   isFavorite: boolean;
   onPress: () => void;
   onCopy: () => void;
@@ -16,6 +18,8 @@ interface PromptCardProps {
 export function PromptCard({
   prompt,
   categoryLabel,
+  categoryColor,
+  categoryColorForeground,
   isFavorite,
   onPress,
   onCopy,
@@ -37,9 +41,9 @@ export function PromptCard({
     >
       <View style={styles.header}>
         <View
-          style={[styles.badge, { backgroundColor: colors.accent }]}
+          style={[styles.badge, { backgroundColor: categoryColor }]}
         >
-          <Text style={[styles.badgeText, { color: colors.accentForeground }]}>
+          <Text style={[styles.badgeText, { color: categoryColorForeground }]}>
             {categoryLabel}
           </Text>
         </View>
@@ -51,7 +55,7 @@ export function PromptCard({
           <Feather
             name="heart"
             size={18}
-            color={isFavorite ? colors.primary : colors.mutedForeground}
+            color={isFavorite ? colors.favorite : colors.mutedForeground}
             style={isFavorite ? styles.heartFilled : undefined}
           />
         </Pressable>

@@ -33,7 +33,7 @@ export default function PromptDetailScreen() {
           <Feather
             name="heart"
             size={20}
-            color={favorite ? colors.primary : colors.mutedForeground}
+            color={favorite ? colors.favorite : colors.mutedForeground}
           />
         </Pressable>
       ),
@@ -64,10 +64,16 @@ export default function PromptDetailScreen() {
         showsVerticalScrollIndicator={false}
       >
         <View
-          style={[styles.categoryBadge, { backgroundColor: colors.accent }]}
+          style={[
+            styles.categoryBadge,
+            { backgroundColor: category?.color ?? colors.accent },
+          ]}
         >
           <Text
-            style={[styles.categoryBadgeText, { color: colors.accentForeground }]}
+            style={[
+              styles.categoryBadgeText,
+              { color: category?.colorForeground ?? colors.accentForeground },
+            ]}
           >
             {category?.name ?? ''}
           </Text>

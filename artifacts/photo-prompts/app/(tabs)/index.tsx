@@ -110,6 +110,8 @@ export default function BrowseScreen() {
               label={item.shortName}
               icon={item.feather as React.ComponentProps<typeof Feather>['name']}
               selected={selectedCategory === item.id}
+              color={item.colorForeground}
+              colorForeground="#FFFFFF"
               onPress={() =>
                 setSelectedCategory((prev) =>
                   prev === item.id ? null : item.id
@@ -141,6 +143,10 @@ export default function BrowseScreen() {
             <PromptCard
               prompt={item}
               categoryLabel={category?.shortName ?? ''}
+              categoryColor={category?.color ?? colors.accent}
+              categoryColorForeground={
+                category?.colorForeground ?? colors.accentForeground
+              }
               isFavorite={isFavorite(item.id)}
               onPress={() => router.push(`/prompt/${item.id}`)}
               onCopy={() => handleCopy(item.prompt)}

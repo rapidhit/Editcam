@@ -1,56 +1,60 @@
 /**
  * Semantic design tokens for the mobile app.
  *
- * Classic "editorial" theme: warm ivory paper surfaces, ink-black text,
- * and a single restrained deep-green accent — closer to a printed
- * photography journal than a typical app palette. This app is
- * intentionally single-theme (always light) — the palette lives under
- * `light` so it applies regardless of the device's system appearance.
+ * Fresh, colourful theme: a clean white base with a vivid violet
+ * primary, and each prompt category carries its own distinct accent
+ * colour (see CATEGORIES in data/prompts.ts) so the browse screen feels
+ * lively and curated rather than monochrome. This app is intentionally
+ * single-theme (always light) — the palette lives under `light` so it
+ * applies regardless of the device's system appearance.
  */
 
 const colors = {
   light: {
     // Legacy aliases (kept for backward compatibility)
-    text: '#211E1A',
-    tint: '#2F4A3C',
+    text: '#18171F',
+    tint: '#6D4CE0',
 
     // Core surfaces
-    background: '#F7F4EE',
-    foreground: '#211E1A',
+    background: '#FBFAFE',
+    foreground: '#18171F',
 
     // Cards / elevated surfaces
     card: '#FFFFFF',
-    cardForeground: '#211E1A',
+    cardForeground: '#18171F',
 
     // Primary action color (buttons, links, active states)
-    primary: '#2F4A3C',
-    primaryForeground: '#F7F4EE',
+    primary: '#6D4CE0',
+    primaryForeground: '#FFFFFF',
 
     // Secondary / less-emphasis interactive surfaces
-    secondary: '#EBE6DB',
-    secondaryForeground: '#211E1A',
+    secondary: '#F2F0FA',
+    secondaryForeground: '#18171F',
 
     // Muted / subdued elements (dividers, timestamps, placeholders)
-    muted: '#EBE6DB',
-    mutedForeground: '#767061',
+    muted: '#F2F0FA',
+    mutedForeground: '#726F85',
 
     // Accent highlights (badges, selected items, focus rings)
-    accent: '#E4DFCF',
-    accentForeground: '#2F4A3C',
+    accent: '#ECE6FB',
+    accentForeground: '#6D4CE0',
 
     // Destructive actions (delete, error states)
-    destructive: '#A33B32',
+    destructive: '#E0433B',
     destructiveForeground: '#ffffff',
 
     // Borders and input outlines
-    border: '#DDD6C6',
-    input: '#DDD6C6',
+    border: '#EAE7F3',
+    input: '#EAE7F3',
 
     // Success / confirmation (copy feedback)
-    success: '#2F4A3C',
+    success: '#1FA463',
+
+    // A second, warmer accent used for favorites (hearts)
+    favorite: '#E0407E',
   },
 
-  radius: 14,
+  radius: 18,
 };
 
 export default colors;

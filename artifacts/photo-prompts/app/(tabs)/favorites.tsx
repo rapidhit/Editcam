@@ -60,6 +60,10 @@ export default function FavoritesScreen() {
             <PromptCard
               prompt={item}
               categoryLabel={category?.shortName ?? ''}
+              categoryColor={category?.color ?? colors.accent}
+              categoryColorForeground={
+                category?.colorForeground ?? colors.accentForeground
+              }
               isFavorite={isFavorite(item.id)}
               onPress={() => router.push(`/prompt/${item.id}`)}
               onCopy={() => handleCopy(item.prompt)}

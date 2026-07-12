@@ -4,6 +4,8 @@ export interface Category {
   shortName: string;
   feather: string;
   sf: string;
+  color: string;
+  colorForeground: string;
 }
 
 export interface Prompt {
@@ -21,6 +23,8 @@ export const CATEGORIES: Category[] = [
     shortName: 'Portrait',
     feather: 'user',
     sf: 'person.crop.circle',
+    color: '#FBE6EE',
+    colorForeground: '#C4356D',
   },
   {
     id: 'background',
@@ -28,6 +32,8 @@ export const CATEGORIES: Category[] = [
     shortName: 'Background',
     feather: 'image',
     sf: 'photo',
+    color: '#E3EEFD',
+    colorForeground: '#2563C7',
   },
   {
     id: 'style',
@@ -35,6 +41,8 @@ export const CATEGORIES: Category[] = [
     shortName: 'Style',
     feather: 'feather',
     sf: 'paintbrush',
+    color: '#EEE6FC',
+    colorForeground: '#6D3FC0',
   },
   {
     id: 'restore',
@@ -42,6 +50,8 @@ export const CATEGORIES: Category[] = [
     shortName: 'Restore',
     feather: 'refresh-cw',
     sf: 'wand.and.stars',
+    color: '#DFF5EC',
+    colorForeground: '#15875A',
   },
   {
     id: 'creative',
@@ -49,6 +59,8 @@ export const CATEGORIES: Category[] = [
     shortName: 'Creative',
     feather: 'zap',
     sf: 'sparkles',
+    color: '#FEF0DA',
+    colorForeground: '#C4791A',
   },
   {
     id: 'product',
@@ -56,6 +68,8 @@ export const CATEGORIES: Category[] = [
     shortName: 'Product',
     feather: 'box',
     sf: 'shippingbox',
+    color: '#E2F3F5',
+    colorForeground: '#1D7D8C',
   },
 ];
 
