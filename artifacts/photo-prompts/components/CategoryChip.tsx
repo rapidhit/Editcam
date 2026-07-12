@@ -1,0 +1,68 @@
+import React from 'react';
+import { Pressable, StyleSheet, Text } from 'react-native';
+import { Feather } from '@expo/vector-icons';
+import { useColors } from '@/hooks/useColors';
+
+interface CategoryChipProps {
+  label: string;
+  icon: React.ComponentProps<typeof Feather>['name'];
+  selected: boolean;
+  onPress: () => void;
+}
+
+export function CategoryChip({
+  label,
+  icon,
+  selected,
+  onPress,
+}: CategoryChipProps) {
+  const colors = useColors();
+
+  return (
+    <Pressable
+      onPress={onPress}
+      hitSlop={4}
+      style={({ pressed }) => [
+        styles.chip,
+        {
+          backgroundColor: selected ? colors.primary : colors.secondary,
+          opacity: pressed ? 0.8 : 1,
+        },
+      ]}
+    >
+      <Feather
+        name={icon}
+        size={14}
+        color={selected ? colors.primaryForeground : colors.mutedForeground}
+        style={styles.icon}
+      />
+      <Text
+        style={[
+          styles.label,
+          { color: selected ? colors.primaryForeground : colors.foreground },
+        ]}
+        numberOfLines={1}
+      >
+        {label}
+      </Text>
+    </Pressable>
+  );
+}
+
+const styles = StyleSheet.create({
+  chip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 9,
+    paddingHorizontal: 14,
+    borderRadius: 100,
+    marginRight: 8,
+  },
+  icon: {
+    marginRight: 6,
+  },
+  label: {
+    fontSize: 13,
+    fontFamily: 'Inter_600SemiBold',
+  },
+});

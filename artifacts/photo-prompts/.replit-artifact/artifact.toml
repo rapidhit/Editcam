@@ -1,0 +1,23 @@
+kind = "mobile"
+previewPath = "/"
+title = "AI Photo Prompts"
+version = "1.0.0"
+id = "artifacts/photo-prompts"
+router = "expo-domain"
+
+[[services]]
+name = "expo"
+ensurePreviewReachable = "/status"
+paths = [ "/" ]
+localPort = 19798
+
+[services.development]
+run = "pnpm --filter @workspace/photo-prompts run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/photo-prompts", "run", "build" ]
+run = [ "pnpm", "--filter", "@workspace/photo-prompts", "run", "serve" ]
+
+[services.env]
+PORT = "19798"
+BASE_PATH = "/"
