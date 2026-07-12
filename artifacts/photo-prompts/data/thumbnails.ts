@@ -3,7 +3,7 @@
 import type { ImageSourcePropType } from 'react-native';
 
 export const THUMBNAILS: Record<string, ImageSourcePropType> = {
-
+  'portrait-studio-glow': require('../assets/thumbnails/portrait-studio-glow.webp'),
 };
 
 export function getThumbnail(promptId: string): ImageSourcePropType | undefined {
