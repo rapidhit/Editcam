@@ -1,52 +1,53 @@
 /**
  * Semantic design tokens for the mobile app.
  *
- * Dark "darkroom" theme: near-black surfaces with a warm amber-orange
- * accent, evoking a photo lab / editing-suite feel. This app is
- * intentionally single-theme (always dark) — the palette lives under
- * `light` so it applies regardless of the device's system appearance.
+ * Light "studio" theme: warm off-white surfaces with a warm amber-orange
+ * accent, evoking a photo lab / editing-suite feel without going dark.
+ * This app is intentionally single-theme (always light) — the palette
+ * lives under `light` so it applies regardless of the device's system
+ * appearance.
  */
 
 const colors = {
   light: {
     // Legacy aliases (kept for backward compatibility)
-    text: '#F5F1EC',
-    tint: '#FF7A45',
+    text: '#211D1A',
+    tint: '#F0662C',
 
     // Core surfaces
-    background: '#121113',
-    foreground: '#F5F1EC',
+    background: '#FBF8F5',
+    foreground: '#211D1A',
 
     // Cards / elevated surfaces
-    card: '#1C1B1E',
-    cardForeground: '#F5F1EC',
+    card: '#FFFFFF',
+    cardForeground: '#211D1A',
 
     // Primary action color (buttons, links, active states)
-    primary: '#FF7A45',
-    primaryForeground: '#181113',
+    primary: '#F0662C',
+    primaryForeground: '#FFFFFF',
 
     // Secondary / less-emphasis interactive surfaces
-    secondary: '#242327',
-    secondaryForeground: '#F5F1EC',
+    secondary: '#F1EBE4',
+    secondaryForeground: '#211D1A',
 
     // Muted / subdued elements (dividers, timestamps, placeholders)
-    muted: '#242327',
-    mutedForeground: '#9C989E',
+    muted: '#F1EBE4',
+    mutedForeground: '#8A8078',
 
     // Accent highlights (badges, selected items, focus rings)
-    accent: '#2E2A28',
-    accentForeground: '#FFB088',
+    accent: '#FCE8DB',
+    accentForeground: '#C24E1B',
 
     // Destructive actions (delete, error states)
-    destructive: '#EF4444',
+    destructive: '#DC2626',
     destructiveForeground: '#ffffff',
 
     // Borders and input outlines
-    border: '#2B2A2D',
-    input: '#2B2A2D',
+    border: '#E8E1D9',
+    input: '#E8E1D9',
 
     // Success / confirmation (copy feedback)
-    success: '#4ADE80',
+    success: '#16A34A',
   },
 
   radius: 18,
