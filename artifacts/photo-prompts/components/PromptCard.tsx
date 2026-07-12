@@ -1,8 +1,9 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useColors } from '@/hooks/useColors';
 import type { Prompt } from '@/data/prompts';
+import { getThumbnail } from '@/data/thumbnails';
 
 interface PromptCardProps {
   prompt: Prompt;
@@ -26,6 +27,7 @@ function PromptCardInner({
   onToggleFavorite,
 }: PromptCardProps) {
   const colors = useColors();
+  const thumbnail = getThumbnail(prompt.id);
 
   return (
     <Pressable
@@ -61,15 +63,26 @@ function PromptCardInner({
         </Pressable>
       </View>
 
-      <Text style={[styles.title, { color: colors.foreground }]}>
-        {prompt.title}
-      </Text>
-      <Text
-        style={[styles.description, { color: colors.mutedForeground }]}
-        numberOfLines={2}
-      >
-        {prompt.description}
-      </Text>
+      <View style={styles.body}>
+        <View style={styles.bodyText}>
+          <Text style={[styles.title, { color: colors.foreground }]}>
+            {prompt.title}
+          </Text>
+          <Text
+            style={[styles.description, { color: colors.mutedForeground }]}
+            numberOfLines={2}
+          >
+            {prompt.description}
+          </Text>
+        </View>
+        {thumbnail ? (
+          <Image
+            source={thumbnail}
+            style={[styles.thumbnail, { borderColor: colors.border }]}
+            resizeMode="cover"
+          />
+        ) : null}
+      </View>
 
       <Pressable
         onPress={onCopy}
@@ -129,6 +142,15 @@ const styles = StyleSheet.create({
   heartFilled: {
     // Feather has no filled heart variant; color alone conveys state.
   },
+  body: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 12,
+    marginBottom: 14,
+  },
+  bodyText: {
+    flex: 1,
+  },
   title: {
     fontSize: 17,
     fontFamily: 'Inter_700Bold',
@@ -138,7 +160,12 @@ const styles = StyleSheet.create({
     fontSize: 13.5,
     fontFamily: 'Inter_400Regular',
     lineHeight: 19,
-    marginBottom: 14,
+  },
+  thumbnail: {
+    width: 76,
+    height: 76,
+    borderRadius: 12,
+    borderWidth: StyleSheet.hairlineWidth,
   },
   copyButton: {
     flexDirection: 'row',

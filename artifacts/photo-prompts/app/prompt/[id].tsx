@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from 'react';
-import { Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { Stack, useLocalSearchParams, useNavigation } from 'expo-router';
 import * as Clipboard from 'expo-clipboard';
@@ -8,6 +8,7 @@ import { useColors } from '@/hooks/useColors';
 import { useFavorites } from '@/contexts/FavoritesContext';
 import { useToast } from '@/contexts/ToastContext';
 import { getCategoryById, getPromptById } from '@/data/prompts';
+import { getThumbnail } from '@/data/thumbnails';
 
 export default function PromptDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -19,6 +20,7 @@ export default function PromptDetailScreen() {
   const prompt = getPromptById(id ?? '');
   const category = prompt ? getCategoryById(prompt.categoryId) : undefined;
   const favorite = prompt ? isFavorite(prompt.id) : false;
+  const thumbnail = prompt ? getThumbnail(prompt.id) : undefined;
 
   useLayoutEffect(() => {
     if (!prompt) return;
@@ -63,6 +65,13 @@ export default function PromptDetailScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
+        {thumbnail ? (
+          <Image
+            source={thumbnail}
+            style={[styles.heroImage, { borderColor: colors.border }]}
+            resizeMode="cover"
+          />
+        ) : null}
         <View
           style={[
             styles.categoryBadge,
@@ -148,6 +157,13 @@ const styles = StyleSheet.create({
   scrollContent: {
     padding: 20,
     paddingBottom: 24,
+  },
+  heroImage: {
+    width: '100%',
+    aspectRatio: 4 / 3,
+    borderRadius: 18,
+    borderWidth: StyleSheet.hairlineWidth,
+    marginBottom: 16,
   },
   categoryBadge: {
     alignSelf: 'flex-start',
