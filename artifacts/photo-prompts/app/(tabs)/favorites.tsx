@@ -1,27 +1,19 @@
 import React from 'react';
 import { FlatList, Platform, StyleSheet, Text, View } from 'react-native';
 import { router } from 'expo-router';
-import * as Clipboard from 'expo-clipboard';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useColors } from '@/hooks/useColors';
-import { PromptCard } from '@/components/PromptCard';
+import { PromptGridCard } from '@/components/PromptGridCard';
 import { EmptyState } from '@/components/EmptyState';
 import { useFavorites } from '@/contexts/FavoritesContext';
-import { useToast } from '@/contexts/ToastContext';
 import { PROMPTS, getCategoryById } from '@/data/prompts';
 
 export default function FavoritesScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
   const { favoriteIds, isFavorite, toggleFavorite } = useFavorites();
-  const { showToast } = useToast();
 
   const favoritePrompts = PROMPTS.filter((p) => favoriteIds.includes(p.id));
-
-  const handleCopy = async (promptText: string) => {
-    await Clipboard.setStringAsync(promptText);
-    showToast('Prompt copied');
-  };
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
@@ -42,6 +34,8 @@ export default function FavoritesScreen() {
       <FlatList
         data={favoritePrompts}
         keyExtractor={(item) => item.id}
+        numColumns={2}
+        columnWrapperStyle={styles.gridRow}
         scrollEnabled={favoritePrompts.length > 0}
         contentContainerStyle={[
           styles.listContent,
@@ -57,7 +51,7 @@ export default function FavoritesScreen() {
         renderItem={({ item }) => {
           const category = getCategoryById(item.categoryId);
           return (
-            <PromptCard
+            <PromptGridCard
               prompt={item}
               categoryLabel={category?.shortName ?? ''}
               categoryColor={category?.color ?? colors.accent}
@@ -66,7 +60,6 @@ export default function FavoritesScreen() {
               }
               isFavorite={isFavorite(item.id)}
               onPress={() => router.push(`/prompt/${item.id}`)}
-              onCopy={() => handleCopy(item.prompt)}
               onToggleFavorite={() => toggleFavorite(item.id)}
             />
           );
@@ -92,6 +85,10 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 14,
     fontFamily: 'Inter_400Regular',
+  },
+  gridRow: {
+    gap: 12,
+    marginBottom: 12,
   },
   listContent: {
     paddingHorizontal: 20,

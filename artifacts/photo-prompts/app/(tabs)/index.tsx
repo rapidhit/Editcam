@@ -12,7 +12,7 @@ import { router } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useColors } from '@/hooks/useColors';
 import { CategoryChip } from '@/components/CategoryChip';
-import { PromptCard } from '@/components/PromptCard';
+import { PromptGridCard } from '@/components/PromptGridCard';
 import { EmptyState } from '@/components/EmptyState';
 import { useFavorites } from '@/contexts/FavoritesContext';
 import { CATEGORIES, PROMPTS, getCategoryById } from '@/data/prompts';
@@ -117,6 +117,8 @@ export default function BrowseScreen() {
       <FlatList
         data={filteredPrompts}
         keyExtractor={(item) => item.id}
+        numColumns={2}
+        columnWrapperStyle={styles.gridRow}
         scrollEnabled={filteredPrompts.length > 0}
         contentContainerStyle={[
           styles.listContent,
@@ -132,7 +134,7 @@ export default function BrowseScreen() {
         renderItem={({ item }) => {
           const category = getCategoryById(item.categoryId);
           return (
-            <PromptCard
+            <PromptGridCard
               prompt={item}
               categoryLabel={category?.shortName ?? ''}
               categoryColor={category?.color ?? colors.accent}
@@ -194,6 +196,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 4,
     paddingBottom: 40,
+  },
+  gridRow: {
+    gap: 12,
+    marginBottom: 12,
   },
   listContentEmpty: {
     flexGrow: 1,
