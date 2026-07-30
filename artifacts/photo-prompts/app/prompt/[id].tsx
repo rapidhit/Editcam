@@ -8,7 +8,8 @@ import { useColors } from '@/hooks/useColors';
 import { useFavorites } from '@/contexts/FavoritesContext';
 import { useToast } from '@/contexts/ToastContext';
 import { getCategoryById, getPromptById } from '@/data/prompts';
-import { getThumbnail } from '@/data/thumbnails';
+import { getThumbnail, getBeforeAfter } from '@/data/thumbnails';
+import { BeforeAfterSlider } from '@/components/BeforeAfterSlider';
 
 export default function PromptDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -21,6 +22,7 @@ export default function PromptDetailScreen() {
   const category = prompt ? getCategoryById(prompt.categoryId) : undefined;
   const favorite = prompt ? isFavorite(prompt.id) : false;
   const thumbnail = prompt ? getThumbnail(prompt.id) : undefined;
+  const beforeAfter = prompt ? getBeforeAfter(prompt.id) : undefined;
 
   useLayoutEffect(() => {
     if (!prompt) return;
@@ -65,7 +67,9 @@ export default function PromptDetailScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {thumbnail ? (
+        {beforeAfter ? (
+          <BeforeAfterSlider pair={beforeAfter} />
+        ) : thumbnail ? (
           <Image
             source={thumbnail}
             style={[styles.heroImage, { borderColor: colors.border }]}
