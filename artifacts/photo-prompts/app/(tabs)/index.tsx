@@ -9,21 +9,18 @@ import {
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import * as Clipboard from 'expo-clipboard';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useColors } from '@/hooks/useColors';
 import { CategoryChip } from '@/components/CategoryChip';
 import { PromptCard } from '@/components/PromptCard';
 import { EmptyState } from '@/components/EmptyState';
 import { useFavorites } from '@/contexts/FavoritesContext';
-import { useToast } from '@/contexts/ToastContext';
 import { CATEGORIES, PROMPTS, getCategoryById } from '@/data/prompts';
 
 export default function BrowseScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
   const { isFavorite, toggleFavorite } = useFavorites();
-  const { showToast } = useToast();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(
     null
   );
@@ -42,11 +39,6 @@ export default function BrowseScreen() {
       return matchesCategory && matchesQuery;
     });
   }, [selectedCategory, query]);
-
-  const handleCopy = async (promptText: string) => {
-    await Clipboard.setStringAsync(promptText);
-    showToast('Prompt copied');
-  };
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
@@ -149,7 +141,6 @@ export default function BrowseScreen() {
               }
               isFavorite={isFavorite(item.id)}
               onPress={() => router.push(`/prompt/${item.id}`)}
-              onCopy={() => handleCopy(item.prompt)}
               onToggleFavorite={() => toggleFavorite(item.id)}
             />
           );

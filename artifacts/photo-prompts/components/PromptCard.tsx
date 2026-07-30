@@ -12,7 +12,6 @@ interface PromptCardProps {
   categoryColorForeground: string;
   isFavorite: boolean;
   onPress: () => void;
-  onCopy: () => void;
   onToggleFavorite: () => void;
 }
 
@@ -23,7 +22,6 @@ function PromptCardInner({
   categoryColorForeground,
   isFavorite,
   onPress,
-  onCopy,
   onToggleFavorite,
 }: PromptCardProps) {
   const colors = useColors();
@@ -84,22 +82,12 @@ function PromptCardInner({
         ) : null}
       </View>
 
-      <Pressable
-        onPress={onCopy}
-        hitSlop={6}
-        style={({ pressed }) => [
-          styles.copyButton,
-          {
-            backgroundColor: colors.secondary,
-            opacity: pressed ? 0.75 : 1,
-          },
-        ]}
-      >
-        <Feather name="copy" size={14} color={colors.foreground} />
-        <Text style={[styles.copyText, { color: colors.foreground }]}>
-          Copy prompt
+      <View style={styles.viewHint}>
+        <Text style={[styles.viewHintText, { color: colors.mutedForeground }]}>
+          Tap to view prompt
         </Text>
-      </Pressable>
+        <Feather name="chevron-right" size={15} color={colors.mutedForeground} />
+      </View>
     </Pressable>
   );
 }
@@ -167,16 +155,13 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: StyleSheet.hairlineWidth,
   },
-  copyButton: {
+  viewHint: {
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'flex-start',
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 100,
-    gap: 6,
+    gap: 2,
   },
-  copyText: {
+  viewHintText: {
     fontSize: 12.5,
     fontFamily: 'Inter_600SemiBold',
   },
